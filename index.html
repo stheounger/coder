@@ -1,0 +1,126 @@
+<html>
+
+<div>
+Input your message:
+<textarea id="etext" cols=40  rows=20>
+this is the encoder
+</textarea>
+<button id="encode">Encode!</button>
+<div class="eoutput"></div>
+</div>
+<script>
+
+var emap = {
+"a" : "1",
+"b" : "01",
+"c" : "11",
+"d" : "001",
+"e" : "101",
+"f" : "011",
+"g" : "111",
+"h" : "0001",
+"i" : "1001",
+"j" : "0101",
+"k" : "1101",
+"l" : "0011",
+"m" : "1011",
+"n" : "0111",
+"o" : "1111",
+"p" : "00001",
+"q" : "10001",
+"r" : "01001",
+"s" : "11001",
+"t" : "00101",
+"u" : "10101",
+"v" : "01101",
+"w" : "11101",
+"x" : "00011",
+"y" : "10011",
+"z" : "01011",
+" " : "b",
+"\n" : "\n",
+   };
+var etextarea = document.querySelector("#etext");
+var ebutton = document.querySelector("#encode");
+var eoutput = document.querySelector(".eoutput");
+
+ebutton.onclick = function(){
+   var text = etextarea.value;
+   var result = "";   
+   for(x=0;x<text.length;x++){
+      var nextCharacter = text.charAt(x);
+      var translation = emap[nextCharacter];
+      result = result + " " + translation;
+   }
+   eoutput.innerText = result;
+};
+
+
+
+
+
+
+
+/*
+DECODER
+*/
+
+
+
+
+
+
+
+
+
+var dmap= {};
+var keys= Object.keys(emap);
+for(x=0;x<keys.length;x++){
+   var key= keys[x];
+   var translation= emap [key];
+   dmap[translation]= key;
+}
+
+console.log(dmap)
+
+</script>
+
+<div>
+Input your message:
+<textarea id="dtext" cols=40  rows=20>
+00101 0001 1001 11001 b 1001 11001 b 00101 0001 101 b 001 101 11 1111 001 101 01001</textarea>
+<button id="decode">Decode!</button>
+<div class="doutput"></div>
+</div>
+
+<script>
+
+var dtextarea = document.querySelector("#dtext");
+var dbutton = document.querySelector("#decode");
+var doutput = document.querySelector(".doutput");
+
+
+dbutton.onclick = function(){
+
+
+
+   var text = dtextarea.value;
+   var words = text.split(" ")
+   var result = "";
+   
+   for(x=0;x<words.length;x++){
+      var nextword = words[x];
+      console.log(x,nextword)
+      var translation = dmap[nextword];
+      result = result + translation;
+   }
+   doutput.innerText = result;
+
+
+}
+
+
+
+</script>
+
+</html>
